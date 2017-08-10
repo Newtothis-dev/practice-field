@@ -19,7 +19,7 @@ struct test_case_container failing_test = {.test_case=&failTest, .failure_statem
 extern struct test_case_container terminal_test_case;
 
 
-int main()
+int main(int argc, char *argv[])
 {
 
 	struct test_case_container allPassingTests[] = 
