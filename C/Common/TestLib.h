@@ -14,7 +14,7 @@ struct test_case_container
 /// If there is no terminal test case the tests will seg fault
 /// This testing methodology is used to allow users to test without caring how many tests are in the array
 /// @returns True if all tests pass. If a test fails will print it's associated failure statement
-bool RunTests( struct test_case_container* test_case_array);
+bool RunTests( struct test_case_container test_case_array[]);
 
 /// Macro allowing users to easily determine if something is the terminal statement. 
 #define IS_TERMINAL_TEST(tc) (tc.test_case == NULL && tc.failure_statement == NULL)

@@ -1,11 +1,8 @@
-testlib.o : testlib.c pch.h testlib.h
-	gcc -c testlib.c 
+testlib.o : testlib.h testlib.c pch.h
+	gcc -c testlib.c
 
-testlibtests.o : testlibtests.c testlib.o
-	gcc -c testlibtests.c
-
-tests : testlibtests.o testlib.o pch.h
-	gcc -o tests testlibtests.o
+all : testlibtests.c testlib.c testlib.o pch.h
+	gcc -o tests testlibtests.c
 	rm *.o
 
 
