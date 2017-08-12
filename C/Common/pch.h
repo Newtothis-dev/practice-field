@@ -10,12 +10,18 @@
 
 
 
-#define _CURRENT_DBG_LVL_ 	2 ///< Set to 2 unless user wants to up it    
-#define _DBG_LVL_VERBOSE_   4
-#define _DBG_LVL_HIGH_      3
+  
+#define _DBG_LVL_VERBOSE_   5
+#define _DBG_LVL_HIGH_      4
+#define _DBG_LVL_UNIT_TEST	3
 #define _DBG_LVL_MEDIUM_    2
 #define _DBG_LVL_LOW_       1
 
+//#define _CURRENT_DBG_LVL_ _DBG_LVL_MEDIUM_ ///< Set by build flags, can enable manually though 
+
+#ifndef _CURRENT_DBG_LVL_
+#define _CURRENT_DBG_LVL_ _DBG_LVL_MEDIUM_
+#endif
 
 
 #if defined(__DEBUG__)

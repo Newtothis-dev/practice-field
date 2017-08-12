@@ -13,9 +13,8 @@ bool failTest()
 
 
 
-struct test_case_container passing_test = {.test_case=&passTest, .failure_statement="This should never happen"};
-struct test_case_container failing_test = {.test_case=&failTest, .failure_statement="This should always happen"};
-//struct test_case_container ttc = {.test_case = NULL, .failure_statement = NULL};
+struct test_case_container passing_test = {.test_case=&passTest, .failure_statement="Failure Statement For passTest()"};
+struct test_case_container failing_test = {.test_case=&failTest, .failure_statement="Failure Statement For failTest()"};
 extern struct test_case_container terminal_test_case;
 
 
@@ -26,7 +25,6 @@ int main(int argc, char *argv[])
 	{
 	passing_test, 
 	passing_test,
-	//failing_test,
 	terminal_test_case
 	};
 
@@ -35,11 +33,10 @@ int main(int argc, char *argv[])
 	{
 	passing_test, 
 	failing_test,
-	//failing_test,
 	terminal_test_case
 	};
 
-	if (true == RunTests(allPassingTests) && false == RunTests(oneFailingTest))
+	if (true == RunTests(5, allPassingTests) && false == RunTests(5, oneFailingTest))
 	{
 		printf("All tests passed\n\r");
 		return 0;
