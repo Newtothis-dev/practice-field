@@ -17,7 +17,7 @@ bool RunTests(int debugLevel, struct test_case_container test_case_array[])
 			}
 			if (!IS_TERMINAL_TEST(test_case_array[i]))
 			{
-				char *msg = test_case_array[i].failure_statement == NULL ? "<No Failure Statement>" : test_case_array[i].failure_statement
+				char *msg = test_case_array[i].failure_statement == NULL ? "<No Failure Statement>" : test_case_array[i].failure_statement;
 				dbgPrint(debugLevel, "Test Failure[%s]\n\r",msg);
 			}
 			return false;
