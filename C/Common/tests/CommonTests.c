@@ -1,5 +1,6 @@
-#include "pch.h"
-#include "TestLib.h"
+#include "Common/pch.h"
+#include "Common/TestLib.h"
+#include "Common/RuntimeData.h"
 
 bool passTest()
 {
@@ -12,24 +13,16 @@ bool failTest()
 }
 
 
-
 struct test_case_container passing_test = {.test_case=&passTest, .failure_statement="Failure Statement For passTest()"};
 struct test_case_container failing_test = {.test_case=&failTest, .failure_statement="Failure Statement For failTest()"};
 extern struct test_case_container terminal_test_case;
 
 
-int main(int argc, char *argv[])
+bool TestingBuidAndTestStructure()
 {
-
 	#ifdef __DEBUG__
 	printf("Debugging enabled!\n\r");
 	#endif
-
-#define _DBG_LVL_VERBOSE_   5
-#define _DBG_LVL_HIGH_      4
-#define _DBG_LVL_UNIT_TEST	3
-#define _DBG_LVL_MEDIUM_    2
-#define _DBG_LVL_LOW_       1
 
 	switch(_CURRENT_DBG_LVL_)
 	{
@@ -60,8 +53,8 @@ int main(int argc, char *argv[])
 	terminal_test_case
 	};
 
-
 	struct test_case_container oneFailingTest[] = 
+
 	{
 	passing_test, 
 	failing_test,
@@ -71,8 +64,35 @@ int main(int argc, char *argv[])
 	if (true == RunTests(1, allPassingTests) && false == RunTests(1, oneFailingTest))
 	{
 		printf("All tests passed\n\r");
-		return 0;
+		return true;
 	}
 	printf("Some tests failed\n\r");
+	return false;
+}
+
+
+
+int main(int argc, char *argv[])
+{
+	struct test_case_container CommonTests[] =
+	{
+		{.test_case=&TestingBuidAndTestStructure, 			.failure_statement="Build or Test Platform failure"},
+		{.test_case=&TestBuildingIntRuntimeData, 			.failure_statement="Test Building Int Runtime Data failed"},
+		{.test_case=&TestBuildingUnsignedIntRuntimeData, 	.failure_statement="Test Building Unsigned Int Runtime Data failed"},
+		{.test_case=&TestBuildingFloadRuntimeData, 			.failure_statement="Test Building Float Runtime Data failed"},
+		{.test_case=&TestBuildingBoolRuntimeData, 			.failure_statement="Test Building Bool Runtime Data failed"},
+		{.test_case=&TestBuildingCharRuntimeData, 			.failure_statement="Test Building Char Runtime Data failed"},
+		{.test_case=&TestBuildingInvalidRuntimeData,		.failure_statement="Test Building Invalid Runtime Data failed"},
+		terminal_test_case
+	};
+
+	if (true == RunTests(_CURRENT_DBG_LVL_, CommonTests))
+	{
+		printf("All Tests Pass!\n\r");
+		return 0;
+	}
+
+	printf("Some Test Failure\n\r");
 	return 1;
+	
 }

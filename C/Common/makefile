@@ -8,9 +8,9 @@ INCLUDES += -I$(BASEDIR)/Common/tests
 
 vpath %.h $(BASEDIR)/Common:$(BASEDIR)/Common/tests
 
-COMMON_DEPS = $(COMMON)/testlib.c $(COMMON)/testlib.h $(COMMON)/pch.h
+COMMON_DEPS = $(COMMON)/testlib.c $(COMMON)/runtimedata.c $(COMMON)/runtimedata.h $(COMMON)/testlib.h $(COMMON)/pch.h
 TEST_DEPS = $(COMMONTESTS)/CommonTests.c $(COMMON)/testlib.h $(COMMON)/pch.h
-ALL_OBJS = $(COMMON)/testlib.o $(COMMONTESTS)/commontests.o
+ALL_OBJS = $(COMMON)/testlib.o $(COMMONTESTS)/commontests.o $(COMMON)/runtimedata.o
 
 
 DEBUG_UNIT_TEST = -D__DEBUG__=1 -D_CURRENT_DBG_LVL_=3
@@ -36,6 +36,9 @@ silent: $(ALL_OBJS)
 
 $(COMMON)/testlib.o : $(COMMON_DEPS)
 	gcc -c $(COMMON)/testlib.c -o $(COMMON)/testlib.o $(INCLUDES) $(DEBUG)
+
+$(COMMON)/runtimedata.o : $(COMMON_DEPS)
+	gcc -c $(COMMON)/runtimedata.c -o $(COMMON)/runtimedata.o $(INCLUDES) $(DEBUG)
 
 $(COMMONTESTS)/commontests.o : $(TEST_DEPS)
 	gcc -c $(COMMONTESTS)/commontests.c -o $(COMMONTESTS)/commontests.o $(INCLUDES) $(DEBUG)

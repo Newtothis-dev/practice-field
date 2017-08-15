@@ -7,8 +7,9 @@
 #pragma once
 #include <stdio.h>
 #include <stdbool.h>
-
-
+#include <assert.h>
+#include <stdlib.h>
+#include <string.h>
 
   
 #define _DBG_LVL_VERBOSE_   5
@@ -17,7 +18,6 @@
 #define _DBG_LVL_MEDIUM_    2
 #define _DBG_LVL_LOW_       1
 
-//#define _CURRENT_DBG_LVL_ _DBG_LVL_MEDIUM_ ///< Set by build flags, can enable manually though 
 
 #ifndef _CURRENT_DBG_LVL_
 #define _CURRENT_DBG_LVL_ _DBG_LVL_MEDIUM_
@@ -29,6 +29,4 @@
 #else 
 #define dbgPrint(printString, ...) 
 #endif 
-
-
 
