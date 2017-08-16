@@ -52,6 +52,8 @@ typedef struct RuntimeData_t
 RuntimeData_t BuildRuntimeData(DataType_t type);
 
 
+///////////////// Tests ////////////////////
+
 bool TestBuildingIntRuntimeData();
 
 bool TestBuildingUnsignedIntRuntimeData();
